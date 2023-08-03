@@ -1,11 +1,6 @@
-substitutions:
+esphome:
   name: "wol-ping"
   friendly_name: "WOL+PING"
-
-
-esphome:
-  name: "${name}"
-  friendly_name: "${friendly_name}"
   project:  
     name: esphome.wol-ping
     version: "1.0"  
