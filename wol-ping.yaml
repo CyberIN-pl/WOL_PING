@@ -6,18 +6,23 @@ substitutions:
 esphome:
   name: "${name}"
   friendly_name: "${friendly_name}"
-  project:
-    name: "CyberIN.pl"
-    version: "1.0"     
+  project:  
+    name: esphome.wol-ping
+    version: "1.0"  
+
   name_add_mac_suffix: true
   comment: Budzenie WOL i PING IP
   libraries:
     - ESP8266WiFi
     - https://github.com/akaJes/AsyncPing#95ac7e4  
 
-# dashboard_import:
-#   # package_import_url: github://CyberIN-pl/licznik-imp-1w/blob/main/licznik-imp-1w.yaml@main
-#   # import_full_config: True
+dashboard_import:
+  package_import_url: github://CyberIN-pl/WOL_PING/blob/main/wol-ping.yaml@main
+  # package_import_url: github://CyberIN-pl/WOL_PING/blob/main/wol-ping.yaml
+  # github://CyberIN-pl/licznik-imp-1w/blob/main/licznik-imp-1w.yaml@main
+  
+
+  import_full_config: True
 #   package_import_url: github://CyberIN-pl/licznik-imp-1w/blob/main/licznik-imp-1w.yaml@main
 #   import_full_config: False   
 
