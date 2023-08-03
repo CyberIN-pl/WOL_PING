@@ -12,7 +12,8 @@ esphome:
     - https://github.com/akaJes/AsyncPing#95ac7e4 
 
 dashboard_import:
-  package_import_url: github://CyberIN-pl/WOL_PING/blob/main/wol-ping.yaml@main
+  package_import_url: https://github.com/CyberIN-pl/WOL_PING/blob/main/wol-ping.yaml@main
+
   # package_import_url: github://CyberIN-pl/WOL_PING/blob/main/wol-ping.yaml
   # github://CyberIN-pl/licznik-imp-1w/blob/main/licznik-imp-1w.yaml@main
   
