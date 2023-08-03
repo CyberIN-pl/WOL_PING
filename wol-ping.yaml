@@ -1,17 +1,16 @@
 substitutions:
-  name: "wol-ping"
-  friendly_name: "WOL+PING"
+  name: "wol"
+  friendly_name: "WOL"
 
 
 esphome:
   name: "${name}"
   friendly_name: "${friendly_name}"
   project:  
-    name: esphome.wol-ping
+    name: esphome.wol
     version: "1.0"  
 
   name_add_mac_suffix: true
-  comment: Budzenie WOL i PING IP
   libraries:
     - ESP8266WiFi
     - https://github.com/akaJes/AsyncPing#95ac7e4  
