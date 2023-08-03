@@ -1,11 +1,6 @@
-substitutions:
+esphome:
   name: "wol-ping"
   friendly_name: "WOL+PING"
-
-
-esphome:
-  name: "${name}"
-  friendly_name: "${friendly_name}"
   project:  
     name: esphome.wol-ping
     version: "1.0"  
@@ -14,7 +9,7 @@ esphome:
   comment: Budzenie WOL i PING IP
   libraries:
     - ESP8266WiFi
-    - https://github.com/akaJes/AsyncPing#95ac7e4  
+    - https://github.com/akaJes/AsyncPing#95ac7e4 
 
 dashboard_import:
   package_import_url: github://CyberIN-pl/WOL_PING/blob/main/wol-ping.yaml@main
