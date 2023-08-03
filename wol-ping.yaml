@@ -1,11 +1,6 @@
-substitutions:
-  name: "wol"
-  friendly_name: "WOL"
-
-
 esphome:
-  name: "${name}"
-  friendly_name: "${friendly_name}"
+  name: wol
+  friendly_name: wol ping
   project:  
     name: esphome.wol
     version: "1.0"  
@@ -14,8 +9,7 @@ esphome:
   libraries:
     - ESP8266WiFi
     - https://github.com/akaJes/AsyncPing#95ac7e4  
- 
-
+    
 esp8266:
   board: nodemcuv2
 
