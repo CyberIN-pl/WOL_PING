@@ -1,1 +1,119 @@
+substitutions:
+  name: "wol-ping"
+  friendly_name: "WOL+PING"
 
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  project:  
+    name: esphome.wol-ping
+    version: "1.0"  
+
+  name_add_mac_suffix: true
+  comment: Budzenie WOL i PING IP
+  libraries:
+    - ESP8266WiFi
+    - https://github.com/akaJes/AsyncPing#95ac7e4  
+
+dashboard_import:
+  package_import_url: github://CyberIN-pl/WOL_PING/blob/main/wol-ping.yaml@main
+  # package_import_url: github://CyberIN-pl/WOL_PING/blob/main/wol-ping.yaml
+  # github://CyberIN-pl/licznik-imp-1w/blob/main/licznik-imp-1w.yaml@main
+  
+
+  import_full_config: False
+#   package_import_url: github://CyberIN-pl/licznik-imp-1w/blob/main/licznik-imp-1w.yaml@main
+#   import_full_config: False   
+
+esp8266:
+  board: nodemcuv2
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: "Wol-Ping Fallback Hotspot"
+  use_address: "wol-ping-185318.local"    
+captive_portal:
+
+external_components:
+  - source:
+      type: git
+      url: https://github.com/trombik/esphome-component-ping
+      ref: main
+
+# konfiguracja mqtt - jeśli ma być zdalne np. w biurze      
+
+sensor:
+  - platform: ping
+
+    # IP address of the target
+    ip_address: 192.168.1.126
+
+    # number of packets to send
+    num_attempts: 17
+
+    # the timeout. however, this is not what you usually expect from `ping`
+    # implementation: the timeout is also the interval to send packets. if you
+    # set this value to 10 sec, and the network is fine (no packet loss), then
+    # the component sends a packet at 10 sec interval, and the total time to
+    # finish would be 10 sec * num_attempts = 10 * 17 = 170 sec.
+    timeout: 1sec
+
+    loss:
+      # the name to be shown.
+      name: Packet loss
+
+    latency:
+      # the name to be shown.
+      name: Latency
+      # this should be 3 as the value is float, unit is sec, and the raw
+      # values are in ms.
+      accuracy_decimals: 3
+
+    # the interval for checking the sensors. defaults to 60s.
+    update_interval: 30s
+
+  - platform: ping
+
+    # IP address of the target
+    ip_address: 192.168.1.1
+
+    # number of packets to send
+    num_attempts: 17
+
+    # the timeout. however, this is not what you usually expect from `ping`
+    # implementation: the timeout is also the interval to send packets. if you
+    # set this value to 10 sec, and the network is fine (no packet loss), then
+    # the component sends a packet at 10 sec interval, and the total time to
+    # finish would be 10 sec * num_attempts = 10 * 17 = 170 sec.
+    timeout: 1sec
+
+    loss:
+      # the name to be shown.
+      name: Packet loss
+
+    latency:
+      # the name to be shown.
+      name: Latency
+      # this should be 3 as the value is float, unit is sec, and the raw
+      # values are in ms.
+      accuracy_decimals: 3
+
+    # the interval for checking the sensors. defaults to 60s.
+    update_interval: 30s    
+
+button:
+  - platform: wake_on_lan
+    name: "Start the Server"
+    target_mac_address: E9:48:B8:CA:58:A1    
+    
